@@ -3,63 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacker Ghost</title>
-    <style>
-        body {
-            background-color: black;
-            color: green;
-            font-family: 'Courier New', monospace;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .glitch {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 40px;
-            font-weight: bold;
-            text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: glitch 1s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch {
-            0% {
-                transform: translate(-50%, -50%) skew(0deg);
-            }
-            25% {
-                transform: translate(-50%, -50%) skew(10deg);
-            }
-            50% {
-                transform: translate(-50%, -50%) skew(0deg);
-            }
-            75% {
-                transform: translate(-50%, -50%) skew(-10deg);
-            }
-            100% {
-                transform: translate(-50%, -50%) skew(0deg);
-            }
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://source.unsplash.com/random') center/cover no-repeat;
-            mix-blend-mode: overlay;
-            z-index: -1;
-            opacity: 0.5;
-        }
-    </style>
+    <title>0xFFFFFFFFFFFFFFFFFFF</title>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="glitch">ACCESS GRANTED</div>
+    <pre class="ascii-art">
+     ┌────────────────────────────────────────────────────────────────────────────┐
+     │       ▄  ████▄    ▄  ▀▄    ▄    ▄    ▄▀   ▄  █ ████▄    ▄▄▄▄▄      ▄▄▄▄▀   │ 
+     │  ▀▄   █ █   █     █   █  █ ▀▄   █ ▄▀    █   █ █   █   █     ▀▄ ▀▀▀ █       │
+     │    █ ▀  █   █ ██   █   ▀█    █ ▀  █ ▀▄  ██▀▀█ █   █ ▄  ▀▀▀▀▄       █       │
+     │   ▄ █   ▀████ █ █  █   █    ▄ █   █   █ █   █ ▀████  ▀▄▄▄▄▀       █        │
+     │  █   ▀▄       █  █ █ ▄▀    █   ▀▄  ███     █                     ▀         │
+     │  ▀           █   ██        ▀             ▀                                 │
+     └────────────────────────────────────────────────────────────────────────────┘
+          オ             ニ             キ            ス          幽        霊
+          
+    </pre>
+    <div class="container">
+    <!--https://codepen.io/aldrie/pen/PojGYLo -->
+      <div class="stack" style="--stacks: 3;">
+        <span style="--index: 0;">Come Back Later </span>
+        <span style="--index: 1;">Come Back Later </span>
+        <span style="--index: 2;">Come Back Later </span>
+      </div>
+    </div>
 </body>
 </html>
+<style> 
+:root {
+  --background: #060608;
+  --color: #FAFAFA;
+}
+
+  body {
+    background-color: #060608;
+    color: white;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .ascii-art {
+    white-space: pre;
+    position: absolute;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+
+.container {
+  color: var(--color);
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0; 
+  left: 0;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%); 
+}
+
+
+.stack {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.stack span {
+  font-weight: bold;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  font-size: 2rem;
+  --stack-height: calc(100% / var(--stacks) - 1px);
+  --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+  --clip-top: calc(var(--stack-height) * var(--index));
+  --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+  clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+  animation: stack 340ms cubic-bezier(.46,.29,0,1.24) 1 backwards calc(var(--index) * 120ms), glitch 2s ease infinite 2s alternate-reverse;
+}
+
+.stack span:nth-child(odd) { --glitch-translate: 8px; }
+.stack span:nth-child(even) { --glitch-translate: -8px; }
+
+@keyframes stack {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+    text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+  };
+  60% {
+    opacity: 0.5;
+    transform: translateX(50%);
+  }
+  80% {
+    transform: none;
+    opacity: 1;
+    text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+  }
+  100% {
+    text-shadow: none;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+    transform: translate(var(--glitch-translate));
+  }
+  2% {
+    text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+  }
+  4%, 100% {  text-shadow: none; transform: none; }
+}
+</style>
